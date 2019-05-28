@@ -1,0 +1,43 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "dominio30.com.br" { 
+           type master;
+           file "/etc/bind/db.dominio30.com.br";
+	   allow-transfer {192.168.30.20; 192.168.50.10; 192.168.36.10;};
+} ;
+zone "thomaz.com.br" { 
+            type master; 
+            file "/etc/bind/db.thomaz.com.br";
+            allow-transfer {192.168.30.20;};
+} ;
+
+zone "168.192.in-addr.arpa" { 
+            type master; 
+            file "/etc/bind/db.168.192";
+            allow-transfer {192.168.30.20;};
+} ;
+
+zone "dominio50.com.br" { 
+           type slave;
+           file "/etc/bind/db.dominio50.com.br";
+	   masters {192.168.50.10;};
+};
+
+zone "dominio36.com.br" { 
+           type slave;
+           file "/etc/bind/db.dominio36.com.br";
+	   masters {192.168.36.10;};
+};
+ 
+zone "dominio100.com.br" { 
+           type master;
+           file "/etc/bind/db.dominio100.com.br";
+	   allow-transfer {192.168.100.10;};
+};
+
